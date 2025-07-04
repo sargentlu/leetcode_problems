@@ -3,14 +3,14 @@ from collections import deque
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         longest_substring: str = ''
-        curr_chars: deque[str] = deque()
+        curr_chars: str
         curr_substring: str
         center: str
 
         i: int; l: int; r: int
         char: str
         for i, char in enumerate(s):
-            curr_chars.clear()
+            curr_chars = ''
             r = 1
 
             while True:
@@ -27,23 +27,21 @@ class Solution:
                 if l < 0 or r >= len(s) or s[l] != s[r]:
                     break
 
-                curr_chars.append(s[r])
+                curr_chars += s[r]
                 l -= 1
                 r += 1
 
-            curr_substring = self.palindrome_string(center, curr_chars)
-
-            if len(curr_substring) > len(longest_substring):
-                longest_substring = curr_substring
+            if len(center) + 2 * len(curr_chars) > len(longest_substring):
+                longest_substring = self.palindrome_string(center, curr_chars)
 
         return longest_substring
 
 
     @staticmethod
-    def palindrome_string(center: str, substring: deque[str] = None) -> str:
+    def palindrome_string(center: str, substring: str = None) -> str:
         if not substring:
             return center
         elif len(substring) == 1:
-            return substring[0] + center + substring[0]
+            return substring + center + substring
 
-        return ''.join(reversed(substring)) + center + ''.join(substring)
+        return substring[::-1] + center + substring
