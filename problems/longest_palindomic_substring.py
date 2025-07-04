@@ -1,5 +1,3 @@
-from collections import deque
-
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         longest_substring: str = ''
@@ -9,6 +7,9 @@ class Solution:
         i: int; l: int; r: int
         char: str
         for i, char in enumerate(s):
+            if i + len(longest_substring) // 2 >= len(s):
+                break
+
             r = 1
 
             while True:
