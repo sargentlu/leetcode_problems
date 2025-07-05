@@ -36,3 +36,10 @@ def test_longest_palindomic_substring_abcba():
 
     longest_palindrome: str = solution.longestPalindrome(test_string)
     assert longest_palindrome == 'abcba'
+
+def test_longest_palindomic_substring_abacab():
+    solution: Solution = Solution()
+    test_string: str = 'abacab'
+
+    longest_palindrome: str = solution.longestPalindrome(test_string)
+    assert longest_palindrome == 'bacab'

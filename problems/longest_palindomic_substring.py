@@ -1,13 +1,11 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        longest_substring: str = ''
-        curr_substring: str
-        center: str
+        longest_palindrome: str = ''
 
         i: int; l: int; r: int
         char: str
         for i, char in enumerate(s):
-            if i + len(longest_substring) // 2 >= len(s):
+            if i + len(longest_palindrome) // 2 >= len(s):
                 break
 
             r = 1
@@ -28,7 +26,7 @@ class Solution:
                 l -= 1
                 r += 1
 
-            if len(s[l+1:r]) > len(longest_substring):
-                longest_substring = s[l+1:r]
+            if len(s[l+1:r]) > len(longest_palindrome):
+                longest_palindrome = s[l+1:r]
 
-        return longest_substring
+        return longest_palindrome
